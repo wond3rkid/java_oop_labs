@@ -31,11 +31,11 @@ public class InterpreterContext {
     }
 
     public void printCurrentElement() {
-        if (memory[memoryPointer] <= 32) {
+        if (memory[memoryPointer] < 32) {
             logger.error("You can not print this symbol, it's ASCII code: " + memory[memoryPointer]);
             throw new InterpreterException("Interpreter failed.");
         } else {
-            System.out.println(memory[memoryPointer]);
+            System.out.print((char) memory[memoryPointer]);
         }
     }
 
