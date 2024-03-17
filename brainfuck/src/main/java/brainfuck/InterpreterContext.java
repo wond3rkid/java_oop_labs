@@ -46,6 +46,7 @@ public class InterpreterContext {
     }
 
     public void inputSymbol() {
+        System.out.println("You have to enter the character in the console: ");
         try {
             byte inputByte = (byte) in.next().charAt(0);
             this.setCurrentElement(inputByte);
@@ -72,7 +73,7 @@ public class InterpreterContext {
     public void decreaseMemoryPointer() {
         if (memoryPointer == 0) {
             logger.error("Fatal error of Interpreter");
-            throw new InterpreterException("Index of array can not be less than zero");
+            throw new InterpreterException("Index of array can not be less than zero.");
         } else {
             this.memoryPointer--;
         }
