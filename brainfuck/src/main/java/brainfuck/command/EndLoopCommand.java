@@ -3,16 +3,11 @@ package brainfuck.command;
 import brainfuck.InterpreterContext;
 
 public class EndLoopCommand implements Command {
-
     boolean isLoopDone = false;
 
     @Override
     public void execute(InterpreterContext context) {
-        if (context.isLoopDone()) {
-            isLoopDone = true;
-        } else {
-            isLoopDone = false;
-        }
+        isLoopDone = context.isLoopDone();
     }
 
 

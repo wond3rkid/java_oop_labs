@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 public class InterpreterContext {
     //scanner
-    private static Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger(InterpreterContext.class);
     static final int ARRAY_SIZE = 65535;
     int cmdPointer;
     int memoryPointer;
@@ -28,6 +28,15 @@ public class InterpreterContext {
 
     public void increaseCmdPointer() {
         this.cmdPointer += 1;
+    }
+
+    public void printCurrentElement() {
+        if (memory[memoryPointer] <= 32) {
+            logger.error("You can not print this symbol, it's ASCII code: " + memory[memoryPointer]);
+            throw new InterpreterException("Interpreter failed.");
+        } else {
+            System.out.println(memory[memoryPointer]);
+        }
     }
 
     public byte getCurrentElement() {
@@ -94,18 +103,15 @@ public class InterpreterContext {
     }
 
     public void startLoop() {
-        //System.out.println("Current cmd pointer : " + (cmdPointer + 1));
         stackCmd.push(cmdPointer + 1);
         stackMmr.push(memoryPointer);
     }
 
     public boolean isLoopDone() {
-        System.out.println("Loop was done well");
         return memory[stackMmr.peek()] == 0;
     }
 
     public void doneLoopHandler() {
-        System.out.println("Now cmd pointer is :" + (cmdPointer + 1));
         setCommandPointer(cmdPointer + 1);
         stackMmr.pop();
         stackCmd.pop();

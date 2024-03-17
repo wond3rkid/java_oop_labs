@@ -1,6 +1,9 @@
 package brainfuck.command;
 
+import brainfuck.InterpreterContext;
 import brainfuck.exception.FabricException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import java.io.IOException;
@@ -10,7 +13,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class CommandFabric {
-
+    private static final Logger logger = LogManager.getLogger(CommandFabric.class);
     private final HashMap<Character, Class<? extends Command>> registeredCommands = new HashMap<>();
 
     public CommandFabric() {
@@ -28,6 +31,7 @@ public class CommandFabric {
                 }
             }
         } catch (ClassNotFoundException err) {
+            logger.error("You wrote the wrong command:");
             throw new FabricException("Class was not found. Brainfuck does not support this operation");
         }
         return false;
@@ -47,7 +51,8 @@ public class CommandFabric {
             return properties.getProperty(Character.toString(sym));
 
         } catch (IOException | NullPointerException err) {
-            throw new FabricException("You did not get class name from property-file");
+            logger.error("Error with properties file. Interpreter's run failed.");
+            throw new FabricException("You did not get class name from property-file.");
         }
     }
 
@@ -56,6 +61,7 @@ public class CommandFabric {
             return registeredCommands.get(command).getDeclaredConstructor().newInstance();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
                  IllegalAccessException err) {
+            logger.error("Error with getting instance of the current command. Interpreter failed:");
             throw new FabricException("You did not get command instance");
         }
     }
