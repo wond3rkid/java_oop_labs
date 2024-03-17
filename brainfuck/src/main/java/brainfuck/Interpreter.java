@@ -31,7 +31,7 @@ public class Interpreter {
             if (!commandFabric.isCommandRegistered(code.charAt(i))) {
                 boolean regCmdFlag = commandFabric.registry(code.charAt(i));
                 if (!regCmdFlag) {
-                    logger.error("Fatal error of Interpreter:");
+                    logger.error("Fatal error of Interpreter: ");
                     throw new InterpreterException("You are trying to execute not-existing command. Try again");
                 }
             }
