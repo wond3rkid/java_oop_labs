@@ -4,13 +4,14 @@ package brainfuck;
 import brainfuck.exception.InterpreterException;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.Stack;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class InterpreterContext {
-    //scanner
     private static final Logger logger = LogManager.getLogger(InterpreterContext.class);
     static final int ARRAY_SIZE = 65535;
     int cmdPointer;
@@ -18,6 +19,7 @@ public class InterpreterContext {
     byte[] memory;
     Stack<Integer> stackCmd = new Stack<>();
     Stack<Integer> stackMmr = new Stack<>();
+    Scanner in = new Scanner(System.in);
 
     InterpreterContext() {
         this.cmdPointer = 0;
@@ -43,12 +45,18 @@ public class InterpreterContext {
         return memory[memoryPointer];
     }
 
-    public void setCommandPointer(int pointer) {
-        this.cmdPointer = pointer;
+    public void inputSymbol() {
+        try {
+            byte inputByte = (byte) in.next().charAt(0);
+            this.setCurrentElement(inputByte);
+        } catch (NoSuchElementException err) {
+            logger.error("You did not write the symbol");
+            throw new InterpreterException("Error with input. Try again.");
+        }
     }
 
-    public void setMemoryPointer(int pointer) {
-        this.memoryPointer = pointer;
+    public void setCommandPointer(int pointer) {
+        this.cmdPointer = pointer;
     }
 
     public void increaseMemoryPointer() {
