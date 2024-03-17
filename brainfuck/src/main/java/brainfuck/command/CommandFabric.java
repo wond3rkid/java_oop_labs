@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class CommandFabric {
+
     private final HashMap<Character, Class<? extends Command>> registeredCommands = new HashMap<>();
 
     public CommandFabric() {
@@ -39,7 +40,7 @@ public class CommandFabric {
     private String getClassNameFromProperties(char sym) {
         try {
             Properties properties = new Properties();
-            InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck/command/brainfuck_commands.properties");
+            InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties");
             properties.load(input);
             assert input != null;
             input.close();
