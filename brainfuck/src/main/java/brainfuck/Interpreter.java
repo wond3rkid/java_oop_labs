@@ -22,6 +22,7 @@ public class Interpreter {
     Interpreter() {
         Scanner in = new Scanner(System.in);
         this.code = in.next();
+        in.close();
     }
 
     public void run() {

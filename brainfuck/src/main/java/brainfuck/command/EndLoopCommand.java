@@ -10,7 +10,6 @@ public class EndLoopCommand implements Command {
         isLoopDone = context.isLoopDone();
     }
 
-
     @Override
     public void updateCmdPointer(InterpreterContext context) {
         if (isLoopDone) {
