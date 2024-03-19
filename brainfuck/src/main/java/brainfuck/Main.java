@@ -9,6 +9,10 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        logger.info("start main");
+        logger.error("error main");
+        logger.debug("debug main");
+        logger.fatal("fatal main");
         try {
             Interpreter interpreter = new Interpreter();
             interpreter.run();
