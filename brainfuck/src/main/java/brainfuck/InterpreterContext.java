@@ -117,6 +117,10 @@ public class InterpreterContext {
     }
 
     public boolean isLoopDone() {
+        if (stackMmr.peek() == null) {
+            logger.fatal("Loop was not started");
+            throw new InterpreterException("Input error");
+        }
         return memory[stackMmr.peek()] == 0;
     }
 
@@ -131,6 +135,10 @@ public class InterpreterContext {
     }
 
     public int getStartLoopPointer() {
+        if (stackCmd.peek() == null) {
+            logger.fatal("Error with interpreter");
+            throw new InterpreterException("Command can`t be done");
+        }
         return stackCmd.peek();
     }
 
