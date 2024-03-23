@@ -5,6 +5,6 @@ import brainfuck.InterpreterContext;
 public class OutputCommand implements Command {
     @Override
     public void execute(InterpreterContext context) {
-        context.printCurrentElement();
+        context.outputHandler();
     }
 }

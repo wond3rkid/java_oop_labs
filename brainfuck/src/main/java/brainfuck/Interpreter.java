@@ -40,6 +40,8 @@ public class Interpreter {
             executeCommand(code.charAt(i));
             i = context.getCommandPointer();
         }
+        logger.info("Result of the brainfuck code: ");
+        System.out.println(context.getOutput());
     }
 
     private void executeCommand(char command) {

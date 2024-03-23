@@ -21,6 +21,8 @@ public class InterpreterContext {
     Stack<Integer> stackMmr = new Stack<>();
     Scanner in = new Scanner(System.in);
 
+    StringBuilder output = new StringBuilder();
+
     InterpreterContext() {
         this.cmdPointer = 0;
         this.memoryPointer = 0;
@@ -141,5 +143,11 @@ public class InterpreterContext {
         }
         return stackCmd.peek();
     }
+    public void outputHandler() {
+        output.append((char) memory[memoryPointer]);
+    }
 
+    public String getOutput() {
+        return output.toString();
+    }
 }
