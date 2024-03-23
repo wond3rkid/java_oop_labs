@@ -20,19 +20,21 @@ public class Interpreter {
     }
 
     Interpreter() {
+        logger.info("You need to write the command:");
         Scanner in = new Scanner(System.in);
         this.code = in.next();
         in.close();
     }
 
     public void run() {
+        logger.info("Start running interpreter.");
         int i = context.getCommandPointer();
         while (i < code.length()) {
             if (!commandFabric.isCommandRegistered(code.charAt(i))) {
                 boolean regCmdFlag = commandFabric.registry(code.charAt(i));
                 if (!regCmdFlag) {
                     logger.error("Fatal error of Interpreter: ");
-                    throw new InterpreterException("You are trying to execute not-existing command. Try again");
+                    throw new InterpreterException("You are trying to execute not-existing command. Try again!");
                 }
             }
             executeCommand(code.charAt(i));
@@ -42,6 +44,7 @@ public class Interpreter {
 
     private void executeCommand(char command) {
         Command current = commandFabric.getCommandInstance(command);
+        logger.info("Current executing command: " + current.getName());
         current.execute(context);
         current.updateCmdPointer(context);
     }
