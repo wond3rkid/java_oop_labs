@@ -3,6 +3,7 @@ package brainfuck;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InterpreterTests {
     @Test
@@ -18,7 +19,7 @@ public class InterpreterTests {
         String testCode = "++++";
         Interpreter interpreter = new Interpreter(testCode);
         interpreter.run();
-        assertEquals(interpreter.getContext().getCurrentElement(),4);
+        assertEquals(interpreter.getContext().getCurrentElement(), 4);
     }
 
     @Test
@@ -26,7 +27,7 @@ public class InterpreterTests {
         String testCode = "-";
         Interpreter interpreter = new Interpreter(testCode);
         interpreter.run();
-        assertEquals(interpreter.getContext().getCurrentElement(),Byte.MAX_VALUE);
+        assertEquals(interpreter.getContext().getCurrentElement(), Byte.MAX_VALUE);
     }
 
     @Test
@@ -46,8 +47,11 @@ public class InterpreterTests {
     }
 
     @Test
-    public void outputElement() {;
-        Interpreter interpreter = new Interpreter();
+    public void outputElement() {
+        String hello = "++++++++++[>+++++++>++++++++++>+++<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.";
+        Interpreter interpreter = new Interpreter(hello);
         interpreter.run();
+        assertTrue(interpreter.getContext().getOutput().equals("Hello World!"));
     }
+
 }

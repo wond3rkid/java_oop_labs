@@ -34,6 +34,7 @@ public class InterpreterContext {
         this.cmdPointer += 1;
     }
 
+/*
     public void printCurrentElement() {
         if (memory[memoryPointer] < 32) {
             logger.error("You can not print this symbol, it's ASCII code: " + memory[memoryPointer]);
@@ -42,6 +43,7 @@ public class InterpreterContext {
             System.out.print((char) memory[memoryPointer]);
         }
     }
+*/
 
     public byte getCurrentElement() {
         return memory[memoryPointer];
@@ -143,6 +145,7 @@ public class InterpreterContext {
         }
         return stackCmd.peek();
     }
+
     public void outputHandler() {
         output.append((char) memory[memoryPointer]);
     }
