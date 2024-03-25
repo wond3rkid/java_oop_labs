@@ -16,9 +16,6 @@ public class CommandFabric {
     private static final Logger logger = LogManager.getLogger(CommandFabric.class);
     private final HashMap<Character, Class<? extends Command>> registeredCommands = new HashMap<>();
 
-    public CommandFabric() {
-    }
-
     public boolean registry(char sym) {
         Class<? extends Command> currClass = registeredCommands.get(sym);
         logger.info("The command " + sym + " is being registered at the factory.");
@@ -51,11 +48,10 @@ public class CommandFabric {
             Properties properties = new Properties();
             InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties");
             properties.load(input);
-            assert input != null;
             input.close();
             return properties.getProperty(Character.toString(sym));
 
-        } catch (IOException | NullPointerException err) {
+        } catch (IOException _) {
             logger.error("Error with properties file. The interpreter has terminated due to an error:");
             throw new FabricException("You did not get class name from property-file.");
         }

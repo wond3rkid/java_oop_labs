@@ -13,7 +13,7 @@ public class Main {
         try {
             Interpreter interpreter = new Interpreter();
             interpreter.run();
-        } catch (InterpreterException | NullPointerException | FabricException err) {
+        } catch (InterpreterException | FabricException err) {
             logger.error("An error occurred while interpreter was working:");
             System.err.println(err.getMessage());
         }

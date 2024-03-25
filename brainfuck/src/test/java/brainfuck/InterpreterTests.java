@@ -51,7 +51,7 @@ public class InterpreterTests {
         String hello = "++++++++++[>+++++++>++++++++++>+++<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.";
         Interpreter interpreter = new Interpreter(hello);
         interpreter.run();
-        assertTrue(interpreter.getContext().getOutput().equals("Hello World!"));
+        assertEquals("Hello World!", interpreter.getContext().getOutput());
     }
 
 }
