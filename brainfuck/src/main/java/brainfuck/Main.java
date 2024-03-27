@@ -14,7 +14,7 @@ public class Main {
             Interpreter interpreter = new Interpreter();
             interpreter.run();
         } catch (InterpreterException | FabricException err) {
-            logger.error("An error occurred while interpreter was working:");
+            logger.error("An error occurred while interpreter was working: ");
             System.err.println(err.getMessage());
         }
     }

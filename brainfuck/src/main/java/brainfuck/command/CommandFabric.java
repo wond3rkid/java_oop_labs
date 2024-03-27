@@ -44,21 +44,18 @@ public class CommandFabric {
 
     private String getClassNameFromProperties(char sym) {
         logger.info("Start get class name from property file.");
-        try {
+        try (InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties");) {
             Properties properties = new Properties();
-            InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties");
             properties.load(input);
-            input.close();
             return properties.getProperty(Character.toString(sym));
-
-        } catch (IOException _) {
+        } catch (IOException e) {
             logger.error("Error with properties file. The interpreter has terminated due to an error:");
             throw new FabricException("You did not get class name from property-file.");
         }
     }
 
     public Command getCommandInstance(char command) {
-        logger.info("Start get command instance from the Command Factory");
+        logger.info("Start getting command instance from the Command Factory:");
         try {
             return registeredCommands.get(command).getDeclaredConstructor().newInstance();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
