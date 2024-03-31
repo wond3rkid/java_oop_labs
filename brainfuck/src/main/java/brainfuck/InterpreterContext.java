@@ -121,7 +121,7 @@ public class InterpreterContext {
     }
 
     public boolean isLoopDone() {
-        if (stackMmr.peek() == null) {
+        if (stackMmr.empty() || stackCmd.empty()) {
             logger.fatal("Loop was not started.");
             throw new InterpreterException("Input error.");
         }
@@ -153,4 +153,9 @@ public class InterpreterContext {
     public String getOutput() {
         return output.toString();
     }
+
+    boolean checkCorrectness() {
+        return stackMmr.empty() && stackCmd.empty();
+    }
+
 }

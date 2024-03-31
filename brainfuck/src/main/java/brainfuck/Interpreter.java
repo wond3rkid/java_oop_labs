@@ -40,6 +40,10 @@ public class Interpreter {
             executeCommand(code.charAt(i));
             i = context.getCommandPointer();
         }
+        if (!context.checkCorrectness()) {
+            logger.fatal("Loop fatal error");
+            throw new InterpreterException("Something went wrong. Please check your input");
+        }
         logger.info("Result of the brainfuck code: ");
         System.out.println(context.getOutput());
     }

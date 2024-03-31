@@ -8,7 +8,7 @@ public interface Command {
     default String getName() {
         return this.getClass().getSimpleName();
     }
-    // ???
+
     default void updateCmdPointer(InterpreterContext context) {
         context.increaseCmdPointer();
     }
