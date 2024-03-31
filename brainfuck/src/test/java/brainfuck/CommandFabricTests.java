@@ -3,6 +3,8 @@ package brainfuck;
 import brainfuck.command.Command;
 import brainfuck.command.CommandFabric;
 import brainfuck.command.IncreaseElementCommand;
+import brainfuck.exception.FabricException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,11 +34,19 @@ public class CommandFabricTests {
     @Test
     public void getInstance() {
         CommandFabric commandFabric = new CommandFabric();
-        Command instance = commandFabric.getCommandInstance('+');
+        Assertions.assertThrows(FabricException.class, () -> {
+            commandFabric.getCommandInstance('+');
+        });
         IncreaseElementCommand increase = new IncreaseElementCommand();
-        assertNull(instance);
         commandFabric.registry('+');
-        instance = commandFabric.getCommandInstance('+');
+        Command instance = commandFabric.getCommandInstance('+');
         assertEquals(instance.getClass(), increase.getClass());
     }
+    @Test
+    public void getExceptionInput() {
+        String badCode = "{";
+        Interpreter interpreter = new Interpreter(badCode);
+        Assertions.assertThrows(FabricException.class, interpreter::run);
+    }
+
 }

@@ -1,9 +1,10 @@
 package brainfuck;
 
+import brainfuck.exception.InterpreterException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InterpreterTests {
     @Test
@@ -54,4 +55,17 @@ public class InterpreterTests {
         assertEquals("Hello World!", interpreter.getContext().getOutput());
     }
 
+    @Test
+    public void getExceptionLoop() {
+        String badCode = "]";
+        Interpreter interpreter = new Interpreter(badCode);
+        Assertions.assertThrows(InterpreterException.class, interpreter::run);
+    }
+
+    @Test
+    public void getExceptionNotendedLoop() {
+        String badCode = "[++++++++++++";
+        Interpreter interpreter = new Interpreter(badCode);
+        Assertions.assertThrows(InterpreterException.class, interpreter::run);
+    }
 }

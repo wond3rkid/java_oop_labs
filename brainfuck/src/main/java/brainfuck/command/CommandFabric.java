@@ -1,6 +1,5 @@
 package brainfuck.command;
 
-import brainfuck.InterpreterContext;
 import brainfuck.exception.FabricException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +28,7 @@ public class CommandFabric {
                     return true;
                 }
             }
-        } catch (ClassNotFoundException err) {
+        } catch (ClassNotFoundException e) {
             logger.info("Registration was not successful for " + sym + " command.");
             logger.error("The interpreter has terminated due to an error:");
             throw new FabricException("Class was not found. Brainfuck does not support this operation");
@@ -44,7 +43,7 @@ public class CommandFabric {
 
     private String getClassNameFromProperties(char sym) {
         logger.info("Start get class name from property file.");
-        try (InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties");) {
+        try (InputStream input = CommandFabric.class.getClassLoader().getResourceAsStream("brainfuck_command.properties")) {
             Properties properties = new Properties();
             properties.load(input);
             return properties.getProperty(Character.toString(sym));
@@ -59,7 +58,7 @@ public class CommandFabric {
         try {
             return registeredCommands.get(command).getDeclaredConstructor().newInstance();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException |
-                 IllegalAccessException err) {
+                 IllegalAccessException | NullPointerException e) {
             logger.error("Error with getting instance of the current command. The interpreter has terminated due to an error:");
             throw new FabricException("You did not get command instance.");
         }

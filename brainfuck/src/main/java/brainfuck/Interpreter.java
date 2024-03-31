@@ -2,6 +2,7 @@ package brainfuck;
 
 import brainfuck.command.Command;
 import brainfuck.command.CommandFabric;
+import brainfuck.exception.FabricException;
 import brainfuck.exception.InterpreterException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,8 +34,8 @@ public class Interpreter {
             if (!commandFabric.isCommandRegistered(code.charAt(i))) {
                 boolean regCmdFlag = commandFabric.registry(code.charAt(i));
                 if (!regCmdFlag) {
-                    logger.error("Fatal error of Interpreter: ");
-                    throw new InterpreterException("You are trying to execute not-existing command. Try again!");
+                    logger.error("Fatal error of Fabric. Command can't be registered.");
+                    throw new FabricException("You are trying to execute unsupportable command. Try again!");
                 }
             }
             executeCommand(code.charAt(i));
