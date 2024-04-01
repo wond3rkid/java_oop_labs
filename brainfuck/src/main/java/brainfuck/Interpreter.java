@@ -51,7 +51,7 @@ public class Interpreter {
 
     private void executeCommand(char command) {
         Command current = commandFabric.getCommandInstance(command);
-        logger.info("Current executing command: " + current.getName());
+        logger.info(STR."Current executing command: \{current.getName()}");
         current.execute(context);
         current.updateCmdPointer(context);
     }

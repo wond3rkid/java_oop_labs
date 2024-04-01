@@ -56,7 +56,7 @@ public class InterpreterContext {
     public void increaseMemoryPointer() {
         if (memoryPointer == ARRAY_SIZE - 1) {
             logger.error("Fatal error of Interpreter");
-            throw new InterpreterException("Index of array can not be more than maximum size: " + ARRAY_SIZE);
+            throw new InterpreterException(STR."Index of array can not be more than maximum size: \{ARRAY_SIZE}");
         } else {
             this.memoryPointer++;
         }

@@ -16,19 +16,19 @@ public class CommandFabric {
 
     public boolean registry(char sym) {
         Class<? extends Command> currClass = registeredCommands.get(sym);
-        logger.info("The command " + sym + " is being registered at the factory.");
+        logger.info(STR."The command \{sym} is being registered at the factory.");
         try {
             if (currClass == null) {
                 String className = getClassNameFromProperties(sym);
                 if (className != null) {
                     currClass = (Class<? extends Command>) Class.forName(className);
-                    logger.info("Registration completed successfully for " + sym + " command.");
+                    logger.info(STR."Registration completed successfully for \{sym} command.");
                     registeredCommands.put(sym, currClass);
                     return true;
                 }
             }
         } catch (ClassNotFoundException _) {
-            logger.info("Registration was not successful for " + sym + " command.");
+            logger.info(STR."Registration was not successful for \{sym} command.");
             logger.error("The interpreter has terminated due to an error:");
             throw new FabricException("Class was not found. Brainfuck does not support this operation");
         }
