@@ -43,7 +43,7 @@ public class InterpreterContext {
         try {
             byte inputByte = (byte) in.next().charAt(0);
             this.setCurrentElement(inputByte);
-        } catch (NoSuchElementException e) {
+        } catch (NoSuchElementException _) {
             logger.error("You did not write the symbol.");
             throw new InterpreterException("Error with input. Try again.");
         }

@@ -13,9 +13,9 @@ public class Main {
         try {
             Interpreter interpreter = new Interpreter();
             interpreter.run();
-        } catch (InterpreterException | FabricException err) {
+        } catch (InterpreterException | FabricException e) {
             logger.error("An error occurred while interpreter was working: ");
-            System.err.println(err.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 }
