@@ -14,9 +14,9 @@ import org.apache.logging.log4j.Logger;
 public class InterpreterContext {
     private static final Logger logger = LogManager.getLogger(InterpreterContext.class);
     static final int ARRAY_SIZE = 65535;
-    int cmdPointer;
-    int memoryPointer;
-    byte[] memory;
+    int cmdPointer = 0;
+    int memoryPointer = 0;
+    byte[] memory = new byte[ARRAY_SIZE];
     Stack<Integer> stackCmd = new Stack<>();
     Stack<Integer> stackMmr = new Stack<>();
     Scanner in = new Scanner(System.in);
@@ -24,9 +24,6 @@ public class InterpreterContext {
     StringBuilder output = new StringBuilder();
 
     InterpreterContext() {
-        this.cmdPointer = 0;
-        this.memoryPointer = 0;
-        this.memory = new byte[ARRAY_SIZE];
         Arrays.fill(memory, (byte) 0);
     }
 
