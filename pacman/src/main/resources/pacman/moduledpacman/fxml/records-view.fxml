@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.35" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+           prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="pacman.moduledpacman.MenuController">
+    <AnchorPane id="ap_rules_right" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                style="-fx-background-color: pink; -fx-border-color: white;">
+        <Text layoutX="53.0" layoutY="202.0" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="RECORDS" textAlignment="CENTER" wrappingWidth="100.0322265625">
+            <font>
+                <Font name="Consolas Bold" size="16.0"/>
+            </font>
+        </Text>
+    </AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"
+                style="-fx-background-color: lavender;" >
+        <TableView fx:id="record_table" prefHeight="398.0" prefWidth="179.0"
+                   style="-fx-background-color: lightblue;" AnchorPane.bottomAnchor="20.0"
+                   AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <columns>
+                <TableColumn fx:id="name_column" prefWidth="178.0" style="-fx-color: pink;" text="Name"/>
+                <TableColumn fx:id="time_column" prefWidth="166.0" style="-fx-color: beige;" text="Time (seconds)"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </AnchorPane>
+</SplitPane>

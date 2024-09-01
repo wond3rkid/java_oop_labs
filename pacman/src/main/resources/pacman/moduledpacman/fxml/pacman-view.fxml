@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import pacman.moduledpacman.view.PacmanView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.canvas.Canvas?>
+<SplitPane dividerPositions="0.7" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pacman.moduledpacman.controller.PacmanController"
+           style="-fx-background-color: gray">
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
+    <BorderPane style="-fx-background-color: black">
+        <top>
+            <VBox styleClass="vbox">
+                <Label>
+                </Label>
+                <Label styleClass="custom-label-white" text="To play use arrows.">
+                </Label>
+                <Canvas fx:id="livesCanvas" width="300" height="50" />
+            </VBox>
+        </top>
+        <center>
+            <PacmanView fx:id="pacmanView"/>
+        </center>
+        <bottom>
+
+        </bottom>
+    </BorderPane>
+    <BorderPane style="-fx-background-color: pink">
+        <top>
+        </top>
+        <center>
+            <VBox styleClass="vbox">
+                <Label fx:id="time_label" styleClass="custom-label" text="Time: 00:00 ">
+                </Label>
+                <Label fx:id="points_label" styleClass="custom-label" text="Points: 0"/>
+                <Label>
+                </Label>
+                <Button mnemonicParsing="false" onMouseClicked="#onRestartButtonClicked"
+                        style="-fx-background-color: blanchedalmond; -fx-border-color: beige;" text="Restart">
+                    <font>
+                        <Font name="Consolas Bold" size="15.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="next_level" mnemonicParsing="false" onMouseClicked="#onNextLevelCLicked"
+                        style="-fx-background-color: blanchedalmond; -fx-border-color: beige;" text="Go to next level">
+                    <font>
+                        <Font name="Consolas Bold" size="15.0"/>
+                    </font>
+                </Button>
+                <Label fx:id="restarted" styleClass="custom-label">
+                </Label>
+                <Label fx:id="gameCondition" styleClass="custom-label">
+                </Label>
+            </VBox>
+        </center>
+    </BorderPane>
+</SplitPane>

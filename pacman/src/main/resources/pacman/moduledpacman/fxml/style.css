@@ -1,0 +1,34 @@
+.custom-label {
+    -fx-font-family: "Consolas";
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+}
+
+.custom-label-white {
+    -fx-font-family: "Consolas";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-wrap-text: true;
+    -fx-alignment: center;
+}
+
+.vbox {
+    -fx-padding: 10 0 0 0;
+    -fx-alignment: center;
+    -fx-spacing: 10px;
+}
+
+.custom-button {
+    -fx-wrap-text: true;
+    -fx-font-family: "Consolas";
+    -fx-font-size: 20px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-background-color: pink;
+    -fx-border-color: violet;
+}
